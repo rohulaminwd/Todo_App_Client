@@ -13,7 +13,7 @@ const EditeModul = ({editeModal, refetch, setEditeModal}) => {
             task: task,
         }
 
-        fetch(`http://localhost:5000/todoUpdate/${editeModal._id}`, {
+        fetch(`https://arcane-wave-11590.herokuapp.com/todoUpdate/${editeModal._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

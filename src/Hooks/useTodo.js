@@ -6,7 +6,7 @@ const useTodo = user => {
     useEffect(() => {
         const email = user?.email
         if(email){
-            fetch(`http://localhost:5000/todo/${email}`, {
+            fetch(`https://arcane-wave-11590.herokuapp.com/todo/${email}`, {
                 method: 'Get',
             headers: {
                 'content-type': 'application/json',                   

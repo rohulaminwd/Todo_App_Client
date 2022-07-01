@@ -17,6 +17,7 @@ import useTodo from './Hooks/useTodo';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
 import { createContext } from 'react';
+import Footer from './Pages/Shared/Footer';
 
 export const todoContext = createContext()
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/signup' element={<SignUp />}></Route>
           <Route path='*' element={<Notfound />}></Route>
         </Routes>
+        <Footer />
       </todoContext.Provider>
       <ToastContainer />
     </div>

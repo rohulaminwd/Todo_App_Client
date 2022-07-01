@@ -13,7 +13,7 @@ const CompleteTask = () => {
     const [user,] = useAuthState(auth);
     const [date, setDate] = useState(new Date)
     const formateDate = format(date, 'PP')
-    const {data: todo, isLoading, refetch} = useQuery('todo', () => fetch(`http://localhost:5000/todo/${user?.email}`, {
+    const {data: todo, isLoading, refetch} = useQuery('todo', () => fetch(`https://arcane-wave-11590.herokuapp.com/todo/${user?.email}`, {
         method: 'GET',
 
     }).then(res => res.json()));
@@ -30,7 +30,7 @@ const CompleteTask = () => {
             <h1 className='text-2xl md:text-5xl text-center uppercase text-blue-600 font-bold'>Complete Task</h1>
             <div className="w-full mx-auto p-2 mt-5">
                 <div className="md:flex mt-5 w-full justify-between">
-                    <div className="w-[336px] md:mr-3 mb-4 md:mb-0 todo-order p-3 mx-auto rounded-lg bg-white">
+                    <div className="w-[320px] sm:w-[336px] md:mr-3 mb-4 md:mb-0 todo-order p-3 mx-auto rounded-lg bg-white">
                         <div>
                             <DayPicker 
                                 mode="single"
@@ -40,17 +40,17 @@ const CompleteTask = () => {
                         </div>
                     </div>
                     <div className="w-full mt-4 md:mt-0">
-                        { todos.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Completed Todo Item <span className='text-cyan-800'>{todos.length}</span></h1>}
+                        { todos?.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Completed Todo Item <span className='text-cyan-800'>{todos?.length}</span></h1>}
                         <div className="grid grid-cols-1 gap-3">
                         {
-                            todos && todos.map(todoItem => <TodoCard 
+                            todos && todos?.map(todoItem => <TodoCard 
                                 key={todoItem._id}
                                 todoItem={todoItem}
                                 refetch={refetch}
                             />)
                         }
                         {
-                            todos.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                            todos?.length === 0 && <div className="mx-auto mt-10 w-[300px]">
                                 <img src={task} className="w-full" alt="" />
                             </div>
                         } 

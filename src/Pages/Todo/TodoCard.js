@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 const TodoCard = ({todoItem, refetch, setEditeModal}) => {
     
     const handleDelete = () => {
-        fetch(`http://localhost:5000/todo/${todoItem._id}`, {
+        fetch(`https://arcane-wave-11590.herokuapp.com/todo/${todoItem._id}`, {
             method: 'DELETE',
         })
         .then(res => res.json())
@@ -20,7 +20,7 @@ const TodoCard = ({todoItem, refetch, setEditeModal}) => {
     }
     const handleComplete = () => {
 
-        fetch(`http://localhost:5000/todo/${todoItem._id}`, {
+        fetch(`https://arcane-wave-11590.herokuapp.com/todo/${todoItem._id}`, {
             method: 'PUT',
         })
         .then(res => res.json())
@@ -32,7 +32,7 @@ const TodoCard = ({todoItem, refetch, setEditeModal}) => {
         })
     }
     return (
-        <div className="bg-white rounded-lg p-3 ">
+        <div className="bg-white rounded-lg p-3" data-aos="zoom-in-up" data-aos-delay="100" data-aos-duration="500">
             <div className="flex items-center justify-between">
                 <div className="flex items-center">
                     {/* <h1 className='text-xl font-bold text-cyan-800 mr-2'>1</h1> */}

@@ -15,7 +15,7 @@ const Calender = () => {
     const [date, setDate] = useState(new Date)
     const formateDate = format(date, 'PP')
 
-    const {data: todo, isLoading, refetch} = useQuery('todo', () => fetch(`http://localhost:5000/todo/${user?.email}`, {
+    const {data: todo, isLoading, refetch} = useQuery('todo', () => fetch(`hhttps://arcane-wave-11590.herokuapp.com/todo/${user?.email}`, {
         method: 'GET',
 
     }).then(res => res.json()));
@@ -31,7 +31,7 @@ const Calender = () => {
         <div className='px-2 md:px-8 lg:px-16 ox-hidden pt-24'>
             <h1 className='text-2xl md:text-5xl text-center uppercase text-blue-600 font-bold'>Calender</h1>
             <div className="md:flex mt-5 w-full justify-between">
-                <div className="w-[336px] md:mr-3 mb-4 md:mb-0 p-3 mx-auto md:order rounded-lg bg-white">
+                <div className="w-[320px] sm:w-[336px] md:mr-3 mb-4 md:mb-0 p-3 mx-auto md:order rounded-lg bg-white">
                     <div>
                         <DayPicker 
                             mode="single"
@@ -41,11 +41,11 @@ const Calender = () => {
                     </div>
                 </div>
                 <div className="w-full mt-4 md:mt-4">
-                    { todoDate.length !== 0 &&<h1 className='text-xl font-bold text-cyan-600 mb-2'>Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
-                    {todoDate.length === 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Not Available Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
+                    { todoDate?.length !== 0 &&<h1 className='text-xl font-bold text-cyan-600 mb-2'>Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
+                    {todoDate?.length === 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Not Available Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
                     <div className="grid w-full grid-cols-1 gap-3">
                     {
-                    todoDate && todoDate.map(todoItem => <TodoCard 
+                    todoDate && todoDate?.map(todoItem => <TodoCard 
                         key={todoItem._id}
                         todoItem={todoItem}
                         refetch={refetch}
@@ -53,7 +53,7 @@ const Calender = () => {
                     />)
                     } 
                     {
-                    todoDate.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                    todoDate?.length === 0 && <div className="mx-auto mt-10 w-[300px]">
                         <img src={task} className="w-full" alt="" />
                     </div>
                    }
