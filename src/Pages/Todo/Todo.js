@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { format } from 'date-fns';
 import TodoCard from './TodoCard';
+import './Todo.css'
 import { toast } from 'react-toastify';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import { useQuery } from 'react-query';
+import task from '../../assets/images/task.png'
+import EditeModul from '../../Modul/EditeModul';
 
 const Todo = () => {
     const [user,] = useAuthState(auth);
+    const [editeModal, setEditeModal] = useState(null)
     const [date, setDate] = useState(new Date)
     const formateDate = format(date, 'PP')
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
@@ -84,17 +88,30 @@ const Todo = () => {
                         <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
                     </form>
                 </div>
-                <h1 className='text-xl font-bold text-cyan-600 mb-2'>All Todo Item</h1>
+                {todos.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>All Todo Item <span className='text-cyan-800'>{todos.length}</span></h1>}
                 <div className="grid grid-cols-1 gap-3">
                    {
                     todos && todos.map(todoItem => <TodoCard 
                         key={todoItem._id}
                         todoItem={todoItem}
                         refetch={refetch}
+                        setEditeModal={setEditeModal}
                     />)
                    } 
+                   {
+                    todos.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                        <img src={task} className="w-full" alt="" />
+                    </div>
+                   }
                 </div>
             </div>
+            {
+                editeModal && <EditeModul 
+                editeModal={editeModal} 
+                refetch={refetch} 
+                setEditeModal={setEditeModal}
+                />
+            }
         </div>
     );
 };

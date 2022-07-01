@@ -3,7 +3,7 @@ import {FiEdit} from 'react-icons/fi'
 import {AiFillDelete} from 'react-icons/ai'
 import { toast } from 'react-toastify';
 
-const TodoCard = ({todoItem, refetch}) => {
+const TodoCard = ({todoItem, refetch, setEditeModal}) => {
     
     const handleDelete = () => {
         fetch(`http://localhost:5000/todo/${todoItem._id}`, {
@@ -45,7 +45,7 @@ const TodoCard = ({todoItem, refetch}) => {
                     </div>
                 </div>
                 <div className="flex items-center ">
-                    <button className='btn btn-sm text-cyan-500 border-0 outline-none bg-cyan-200'> <FiEdit /> </button>
+                    <label onClick={() => setEditeModal(todoItem)} disabled={todoItem.status === 'complete'} for="Edite-modal" className='btn btn-sm text-cyan-500 border-0 outline-none bg-cyan-200'><FiEdit /></label>
                     <button onClick={() => handleDelete()} className='btn text-red-800 text-xl font-bold ml-2 btn-sm btn-ghost'> <AiFillDelete /> </button>
                 </div>
             </div>

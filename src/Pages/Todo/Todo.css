@@ -1,4 +1,10 @@
 
-.dolo{
-    color: #2e7960;
+.todo-order{
+    order: 0 !important;
 }
+
+@media screen and (max-width: 775px) {
+    .todo-order{
+        order: 2 !important;
+    }
+  }

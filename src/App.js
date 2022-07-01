@@ -31,8 +31,8 @@ function App() {
         <Navbar></Navbar>
         <Routes>
           <Route path='/' element={<RequireAuth><Todo /></RequireAuth>}></Route>
-          <Route path='/completed' element={<CompleteTask></CompleteTask>}></Route>
-          <Route path='/calender' element={<Calender></Calender>}></Route>
+          <Route path='/completed' element={<RequireAuth><CompleteTask /></RequireAuth>}></Route>
+          <Route path='/calender' element={<RequireAuth><Calender /></RequireAuth>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
           <Route path='*' element={<Notfound />}></Route>

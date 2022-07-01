@@ -27,7 +27,7 @@ const SignUp = () => {
     }
 
     if(user){
-        navigate('/Todo')
+        navigate('/')
     }
 
     const onSubmit = async data => {

@@ -24,11 +24,20 @@ export default auth;
 
 
 
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
 // const firebaseConfig = {
-//   apiKey: "AIzaSyAHKZQskNyE3duKjAEBngrMQtsB9Ka4TMY",
-//   authDomain: "manufacture-5aaff.firebaseapp.com",
-//   projectId: "manufacture-5aaff",
-//   storageBucket: "manufacture-5aaff.appspot.com",
-//   messagingSenderId: "813537792697",
-//   appId: "1:813537792697:web:c685d0c2d1a4e4bf608168"
+//   apiKey: "AIzaSyCrgyVhwFuk4K6rX7fmFRgIUVfwiHemoYw",
+//   authDomain: "todo-app-538a7.firebaseapp.com",
+//   projectId: "todo-app-538a7",
+//   storageBucket: "todo-app-538a7.appspot.com",
+//   messagingSenderId: "638761775740",
+//   appId: "1:638761775740:web:df7a729246ae4a86b08ff9"
 // };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);

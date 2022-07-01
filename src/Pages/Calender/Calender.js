@@ -6,9 +6,12 @@ import auth from '../../firebase.init';
 import TodoCard from '../Todo/TodoCard';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import EditeModul from '../../Modul/EditeModul';
+import task from '../../assets/images/task.png'
 
 const Calender = () => {
     const [user,] = useAuthState(auth);
+    const [editeModal, setEditeModal] = useState(null)
     const [date, setDate] = useState(new Date)
     const formateDate = format(date, 'PP')
 
@@ -28,19 +31,7 @@ const Calender = () => {
         <div className='px-2 md:px-8 lg:px-16 ox-hidden pt-24'>
             <h1 className='text-2xl md:text-5xl text-center uppercase text-blue-600 font-bold'>Calender</h1>
             <div className="md:flex mt-5 w-full justify-between">
-                <div className="w-full">
-                    <h1 className='text-xl font-bold text-cyan-600 mb-2'>Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>
-                    <div className="grid w-full grid-cols-1 gap-3">
-                    {
-                    todoDate && todoDate.map(todoItem => <TodoCard 
-                        key={todoItem._id}
-                        todoItem={todoItem}
-                        refetch={refetch}
-                    />)
-                    } 
-                    </div>
-                </div>
-                <div className="w-[336px] md:ml-3 p-3 mx-auto rounded-lg bg-white">
+                <div className="w-[336px] md:mr-3 mb-4 md:mb-0 p-3 mx-auto md:order rounded-lg bg-white">
                     <div>
                         <DayPicker 
                             mode="single"
@@ -49,7 +40,33 @@ const Calender = () => {
                         />
                     </div>
                 </div>
+                <div className="w-full mt-4 md:mt-4">
+                    { todoDate.length !== 0 &&<h1 className='text-xl font-bold text-cyan-600 mb-2'>Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
+                    {todoDate.length === 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Not Available Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
+                    <div className="grid w-full grid-cols-1 gap-3">
+                    {
+                    todoDate && todoDate.map(todoItem => <TodoCard 
+                        key={todoItem._id}
+                        todoItem={todoItem}
+                        refetch={refetch}
+                        setEditeModal={setEditeModal}
+                    />)
+                    } 
+                    {
+                    todoDate.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                        <img src={task} className="w-full" alt="" />
+                    </div>
+                   }
+                    </div>
+                </div>
             </div>
+            {
+                editeModal && <EditeModul 
+                editeModal={editeModal} 
+                refetch={refetch} 
+                setEditeModal={setEditeModal}
+                />
+            }
         </div>
     );
 };
