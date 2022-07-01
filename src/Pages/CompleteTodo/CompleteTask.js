@@ -26,17 +26,19 @@ const CompleteTask = () => {
     }
     refetch()
     return (
-        <div className='px-2 md:px-8 lg:px-16 ox-hidden pt-24'>
+        <div className='px-2 md:px-8 min-h-screen lg:px-16 ox-hidden pt-24'>
             <h1 className='text-2xl md:text-5xl text-center uppercase text-blue-600 font-bold'>Complete Task</h1>
             <div className="w-full mx-auto p-2 mt-5">
                 <div className="md:flex mt-5 w-full justify-between">
-                    <div className="w-[320px] sm:w-[336px] md:mr-3 mb-4 md:mb-0 todo-order p-3 mx-auto rounded-lg bg-white">
-                        <div>
-                            <DayPicker 
-                                mode="single"
-                                selected={date}
-                                onDayClick={setDate}
-                            />
+                    <div className="">
+                        <div className="w-[320px] sm:w-[336px] md:mr-3 mb-4 md:mb-0 todo-order p-3 mx-auto rounded-lg bg-white">
+                            <div>
+                                <DayPicker 
+                                    mode="single"
+                                    selected={date}
+                                    onDayClick={setDate}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="w-full mt-4 md:mt-0">

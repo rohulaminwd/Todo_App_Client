@@ -63,7 +63,7 @@ const Todo = () => {
     }
     refetch()
     return (
-        <div className="max-w-7xl pt-20 h-screen mx-auto bg-blue-100">
+        <div className="max-w-7xl pt-20 min-h-screen mx-auto bg-blue-100">
             <div className="md:w-[700px] p-4 mx-auto">
                 <h1 className='text-4xl uppercase text-cyan-800 font-bold text-center'>Todo Task list</h1>
                 <div className="bg-white rounded-lg my-5 mx-auto md:w-[600px] p-3">
@@ -88,7 +88,7 @@ const Todo = () => {
                         <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
                     </form>
                 </div>
-                {todos.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>All Todo Item <span className='text-cyan-800'>{todos?.length}</span></h1>}
+                {todos?.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>All Todo Item <span className='text-cyan-800'>{todos?.length}</span></h1>}
                 <div className="grid grid-cols-1 gap-3">
                    {
                     todos && todos?.map(todoItem => <TodoCard 

@@ -27,7 +27,7 @@ function App() {
   const [user] = useAuthState(auth);
   const [todo, todoLoading] = useTodo(user)
   return (
-    <div className='max-w-7xl mx-auto h-screen bg-blue-100'>
+    <div className='max-w-7xl mx-auto bg-blue-100'>
       <todoContext.Provider value={[todo, todoLoading]}>
         <Navbar></Navbar>
         <Routes>
