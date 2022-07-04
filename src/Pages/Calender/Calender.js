@@ -55,7 +55,7 @@ const Calender = () => {
                     />)
                     } 
                     {
-                    todoDate?.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                    todoDate?.length === 0 && <div className="mx-auto mt-10 w-[200px]">
                         <img src={task} className="w-full" alt="" />
                     </div>
                    }

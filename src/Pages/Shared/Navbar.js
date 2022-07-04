@@ -4,6 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from './Loading';
+import {RiTodoLine} from 'react-icons/ri'
+import {GrCompliance} from 'react-icons/gr'
+import {BiCalendar} from 'react-icons/bi'
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
@@ -16,9 +19,30 @@ const Navbar = () => {
         <Loading />
     }
     const menuItems = <>
-        <li className='mx-2'><NavLink to='/' >Todo</NavLink></li>
-        <li className='mx-2'><NavLink to='/completed'>Completed</NavLink></li>
-        <li className='mx-2'><NavLink to='/calender' >Calender</NavLink></li>
+        <div className='mx-3'>
+            <NavLink className='' to='/' >
+                <div className='sm:flex justify-center sm:items-center'>
+                    <div className='font-bold text-[18px] sm:block flex justify-center'><RiTodoLine /></div>
+                    <span className='ml-1 mt-0 block sm:text-[18px] text-sm'>Todo</span>
+                </div>
+            </NavLink>
+        </div>
+        <div className='mx-3 my-0 py-0'>
+            <NavLink className='' to='/completed' >
+                <div className='sm:flex justify-center sm:items-center'>
+                    <div className='font-bold leading-none text-[18px] sm:block flex justify-center'><GrCompliance /></div>
+                    <span className='ml-1 mt-0 block sm:text-[18px] text-sm'>Complete</span>
+                </div>
+            </NavLink>
+        </div>
+        <div className='mx-3 my-0 py-0'>
+            <NavLink className='' to='/calender' >
+                <div className='sm:flex justify-center sm:items-center'>
+                    <div className='font-bold leading-none text-[18px] sm:block flex justify-center'><BiCalendar /></div>
+                    <span className='ml-1 mt-0 block sm:text-[18px] text-sm'>Calender</span>
+                </div>
+            </NavLink>
+        </div>
     </>
     const profile = <>
         <li className='mx-2'>
@@ -26,7 +50,7 @@ const Navbar = () => {
               user?
               <div class="dropdown p-0 dropdown-end">
                     <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
+                        <div class="w-8 sm:w-10 rounded-full">
                         { user?.photoURL? <img src={user.photoURL} alt='profile' /> : <img src="https://api.lorem.space/image/face?hash=33791" alt='profile' />}
                         </div>
                     </label>
@@ -49,27 +73,21 @@ const Navbar = () => {
         </li>
     </>
     return (
-        <div className="fixed top-0 z-50 left-0 bg-blue-200 w-full">
-            <div className="navbar max-w-7xl mx-auto">
-                <div className="navbar-start">
-                    <div className="hidden lg:flex">
+        <div className="fixed top-0 py-0 z-50 left-0 border-b bg-white w-full">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex items-center justify-between w-full">
+                    <div className="w-full">
+                        <div className="w-full px-1">
+                            <ul className="menu menu-horizontal font-bold p-0">
+                                {menuItems}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="">
                         <ul className="menu menu-horizontal font-bold p-0">
-                            {menuItems}
+                            {profile}
                         </ul>
                     </div>
-                </div>
-                <div className="navbar-end">
-                    <div className="dropdown dropdown-end lg:hidden">
-                        <label tabindex="1" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
-                        <ul tabindex="1" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            {menuItems}
-                        </ul>
-                    </div>
-                    <ul className="menu menu-horizontal font-bold p-0">
-                        {profile}
-                    </ul>
                 </div>
             </div>
         </div>

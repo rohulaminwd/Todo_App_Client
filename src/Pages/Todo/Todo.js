@@ -63,7 +63,7 @@ const Todo = () => {
     }
     refetch()
     return (
-        <div className="max-w-7xl pt-20 min-h-screen mx-auto bg-blue-100">
+        <div className="max-w-7xl pt-[60px] min-h-screen mx-auto bg-blue-100">
             <div className="md:w-[700px] p-4 mx-auto">
                 <h1 className='text-4xl uppercase text-cyan-800 font-bold text-center'>Todo Task list</h1>
                 <div className="bg-white rounded-lg my-5 mx-auto md:w-[600px] p-3">
@@ -99,7 +99,7 @@ const Todo = () => {
                     />)
                    } 
                    {
-                    todos?.length === 0 && <div className="mx-auto mt-10 w-[300px]">
+                    todos?.length === 0 && <div className="mx-auto mt-10 w-[200px]">
                         <img src={task} className="w-full" alt="" />
                     </div>
                    }

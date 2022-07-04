@@ -3,6 +3,15 @@
     order: 0 !important;
 }
 
+.active{
+    color: #0b7d37;
+    background: none;
+    transition: 0.3s;
+}
+.privet{
+    margin-top: -3px !important;
+}
+
 @media screen and (max-width: 775px) {
     .todo-order{
         order: 2 !important;
