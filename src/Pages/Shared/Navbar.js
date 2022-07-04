@@ -5,8 +5,9 @@ import { NavLink } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import {RiTodoLine} from 'react-icons/ri'
-import {GrCompliance} from 'react-icons/gr'
+import {FaRegCalendarCheck} from 'react-icons/fa'
 import {BiCalendar} from 'react-icons/bi'
+import {HiOutlineLogin} from 'react-icons/hi'
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
@@ -30,7 +31,7 @@ const Navbar = () => {
         <div className='mx-3 my-0 py-0'>
             <NavLink className='' to='/completed' >
                 <div className='sm:flex justify-center sm:items-center'>
-                    <div className='font-bold leading-none text-[18px] sm:block flex justify-center'><GrCompliance /></div>
+                    <div className='font-bold leading-none text-[18px] sm:block flex justify-center'><FaRegCalendarCheck /></div>
                     <span className='ml-1 mt-0 block sm:text-[18px] text-sm'>Complete</span>
                 </div>
             </NavLink>
@@ -68,7 +69,14 @@ const Navbar = () => {
                     </ul>
                 </div>
               :
-              <NavLink to='/Login' >Login</NavLink>
+              <div className='mx-3 my-0 py-0 sm:py-3'>
+                    <NavLink className='' to='/login' >
+                        <div className='sm:flex justify-center sm:items-center'>
+                            <div className='font-bold leading-none text-[18px] sm:block flex justify-center'><HiOutlineLogin /></div>
+                            <span className='ml-1 mt-0 block sm:text-[18px] text-sm'>Login</span>
+                        </div>
+                    </NavLink>
+                </div>
           }
         </li>
     </>

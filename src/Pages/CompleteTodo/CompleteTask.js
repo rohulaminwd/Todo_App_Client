@@ -12,6 +12,7 @@ import '../Todo/TodoCard'
 const CompleteTask = () => {
     const [user,] = useAuthState(auth);
     const [date, setDate] = useState(new Date)
+    console.log(date)
     const formateDate = format(date, 'PP')
     const {data: todo, isLoading, refetch} = useQuery('todo', () => fetch(`https://arcane-wave-11590.herokuapp.com/todo/${user?.email}`, {
         method: 'GET',
@@ -24,7 +25,6 @@ const CompleteTask = () => {
     if(isLoading){
         <Loading />
     }
-    refetch()
     return (
         <div className='px-2 md:px-8 min-h-screen lg:px-16 ox-hidden pt-24'>
             <h1 className='text-2xl md:text-5xl text-center uppercase text-blue-600 font-bold'>Complete Task</h1>
@@ -37,6 +37,8 @@ const CompleteTask = () => {
                                     mode="single"
                                     selected={date}
                                     onDayClick={setDate}
+                                    defaultMonth={new Date} 
+                                    fromYear={(2022)}
                                 />
                             </div>
                         </div>
