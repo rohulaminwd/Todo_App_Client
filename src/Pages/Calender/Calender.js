@@ -47,10 +47,11 @@ const Calender = () => {
                     {todoDate?.length === 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Not Available Todo Items for <span className='text-cyan-800'>{formateDate}</span></h1>}
                     <div className="grid w-full grid-cols-1 gap-3">
                     {
-                    todoDate && todoDate?.map(todoItem => <TodoCard 
+                    todoDate && todoDate?.map((todoItem, index) => <TodoCard 
                         key={todoItem._id}
                         todoItem={todoItem}
                         refetch={refetch}
+                        index={index}
                         setEditeModal={setEditeModal}
                     />)
                     } 

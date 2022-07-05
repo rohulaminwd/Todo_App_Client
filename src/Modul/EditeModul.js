@@ -8,9 +8,11 @@ const EditeModul = ({editeModal, refetch, setEditeModal}) => {
 
     const onSubmit = data => {
         const task = data.task;
+        const title = data.title;
         
         const todoTask = {
             task: task,
+            title: title,
         }
 
         fetch(`https://arcane-wave-11590.herokuapp.com/todoUpdate/${editeModal._id}`, {
@@ -36,25 +38,47 @@ const EditeModul = ({editeModal, refetch, setEditeModal}) => {
                 <div className="modal-box relative">
                     <label for="Edite-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h1 className='text-xl font-bold text-cyan-600 mb-2'>Edite Todo Item</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex w-full justify-between">
-                        <div className="w-full">
-                            <input 
-                                type="text" 
-                                placeholder={editeModal.task} 
-                                // value={editeModal.task}
-                                class="input w-full input-bordered input-success" 
-                                {...register("task", {
-                                    required: {
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+                        <div className="flex w-full justify-between gap-x-2">
+                            <div className="w-full">
+                                <input 
+                                    type="text" 
+                                    placeholder="Task Title" 
+                                    class="input w-full input-bordered input-sm input-success" 
+                                    {...register("title", {
+                                        required: {
+                                        value: true,
+                                        message: 'title is required'  
+                                        },
+                                    })}
+                                />
+                                <label className="label">
+                                    {errors.title?.type === 'required' && <span className="label-text-alt text-red-500">{errors.title.message}</span>}
+                                </label>
+                            </div>
+                            <div className="w-full">
+                                <input type="date" class="input w-full input-bordered input-sm input-success" name="date" id="" />
+                            </div>
+                        </div>
+                        <div className="flex w-full justify-between">
+                            <div className="w-full">
+                                <input 
+                                    type="text" 
+                                    placeholder="Task Description" 
+                                    class="input w-full input-bordered input-success" 
+                                    {...register("task", {
+                                        required: {
                                         value: true,
                                         message: 'Task is required'  
-                                    },
+                                        },
                                     })}
-                            />
-                            <label className="label">
-                                {errors.task?.type === 'required' && <span className="label-text-alt text-red-500">{errors.task.message}</span>}
-                            </label>
+                                />
+                                <label className="label">
+                                    {errors.task?.type === 'required' && <span className="label-text-alt text-red-500">{errors.task.message}</span>}
+                                </label>
+                            </div>
+                            <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
                         </div>
-                        <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
                     </form>
                 </div>
             </div>

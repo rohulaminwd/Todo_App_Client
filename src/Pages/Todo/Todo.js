@@ -31,12 +31,14 @@ const Todo = () => {
 
     const onSubmit = data => {
         const task = data.task;
+        const title = data.title;
         const dates = formateDate;
         const email = user?.email;
         const status = "pending"
         
         const todoTask = {
             task: task,
+            title: title,
             date: dates,
             email: email,
             status: status,
@@ -65,36 +67,60 @@ const Todo = () => {
     return (
         <div className="max-w-7xl pt-[60px] min-h-screen mx-auto bg-blue-100">
             <div className="md:w-[700px] p-4 mx-auto">
-                <h1 className='text-4xl uppercase text-cyan-800 font-bold text-center'>Todo Task list</h1>
+                {/* <h1 className='text-4xl uppercase text-cyan-800 font-bold text-center'>Todo Task list</h1> */}
                 <div className="bg-white rounded-lg my-5 mx-auto md:w-[600px] p-3">
                     <h1 className='text-xl font-bold text-cyan-600 mb-2'>Add Todo Item</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex w-full justify-between">
-                        <div className="w-full">
-                            <input 
-                                type="text" 
-                                placeholder="Add Todo Task" 
-                                class="input w-full input-bordered input-success" 
-                                {...register("task", {
-                                    required: {
-                                      value: true,
-                                      message: 'Task is required'  
-                                    },
-                                  })}
-                            />
-                            <label className="label">
-                                {errors.task?.type === 'required' && <span className="label-text-alt text-red-500">{errors.task.message}</span>}
-                            </label>
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+                        <div className="flex w-full justify-between gap-x-2">
+                            <div className="w-full">
+                                <input 
+                                    type="text" 
+                                    placeholder="Task Title" 
+                                    class="input w-full input-bordered input-sm input-success" 
+                                    {...register("title", {
+                                        required: {
+                                        value: true,
+                                        message: 'title is required'  
+                                        },
+                                    })}
+                                />
+                                <label className="label">
+                                    {errors.title?.type === 'required' && <span className="label-text-alt text-red-500">{errors.title.message}</span>}
+                                </label>
+                            </div>
+                            <div className="w-full">
+                                <input type="date" class="input w-full input-bordered input-sm input-success" name="date" id="" />
+                            </div>
                         </div>
-                        <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
+                        <div className="flex w-full justify-between">
+                            <div className="w-full">
+                                <input 
+                                    type="text" 
+                                    placeholder="Task Description" 
+                                    class="input w-full input-bordered input-success" 
+                                    {...register("task", {
+                                        required: {
+                                        value: true,
+                                        message: 'Task is required'  
+                                        },
+                                    })}
+                                />
+                                <label className="label">
+                                    {errors.task?.type === 'required' && <span className="label-text-alt text-red-500">{errors.task.message}</span>}
+                                </label>
+                            </div>
+                            <input className='btn ml-2 btn-success font-bold' type="submit" value="Add" />
+                        </div>
                     </form>
                 </div>
                 {todos?.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>All Todo Item <span className='text-cyan-800'>{todos?.length}</span></h1>}
                 <div className="grid grid-cols-1 gap-3">
                    {
-                    todos && todos?.map(todoItem => <TodoCard 
+                    todos && todos?.map((todoItem, index) => <TodoCard 
                         key={todoItem._id}
                         todoItem={todoItem}
                         refetch={refetch}
+                        index={index}
                         setEditeModal={setEditeModal}
                     />)
                    } 

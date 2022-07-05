@@ -47,9 +47,10 @@ const CompleteTask = () => {
                         { todos?.length !== 0 && <h1 className='text-xl font-bold text-cyan-600 mb-2'>Completed Todo Item <span className='text-cyan-800'>{todos?.length}</span></h1>}
                         <div className="grid grid-cols-1 gap-3">
                         {
-                            todos && todos?.map(todoItem => <TodoCard 
+                            todos && todos?.map((todoItem, index) => <TodoCard 
                                 key={todoItem._id}
                                 todoItem={todoItem}
+                                index={index}
                                 refetch={refetch}
                             />)
                         }
